@@ -13,7 +13,7 @@ jobs:
           pkg-manager: pip
           app-dir: ./
           pip-dependency-file: pyproject.toml
-          args: "[test]"
+          args: ".[test]"
       - run:
           name: Run tests
           command: |
