@@ -1,23 +1,20 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@2.1.1
+  python: circleci/python@3.2.0
 
 jobs:
   test:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.12
     steps:
       - checkout
       - python/install-packages:
-          pkg-manager: pip
-          app-dir: ./
-          pip-dependency-file: pyproject.toml
-          args: ".[test]"
+          pkg-manager: uv
       - run:
           name: Run tests
           command: |
-            python -m pytest --cov=./ --cov-report=xml
+            uv run pytest --cov=./ --cov-report=xml
       - store_test_results:
           path: test-results
       - store_artifacts:
