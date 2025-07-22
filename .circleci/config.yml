@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@2.1.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/python:3.10
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          app-dir: ./
+          pip-dependency-file: pyproject.toml
+          args: "[test]"
+      - run:
+          name: Run tests
+          command: |
+            python -m pytest --cov=./ --cov-report=xml
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: test-results
+      - store_artifacts:
+          path: coverage.xml
+
+workflows:
+  test-workflow:
+    jobs:
+      - test
