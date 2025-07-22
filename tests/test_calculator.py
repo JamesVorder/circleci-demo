@@ -1,5 +1,5 @@
 import pytest
-from circleci_demo.calculator import add, subtract, multiply, divide
+from src.circleci_demo.calculator import add, subtract, multiply, divide
 
 def test_add():
     assert add(2, 3) == 5
