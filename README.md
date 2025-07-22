@@ -34,15 +34,9 @@ circleci-demo/
    cd circleci-demo
    ```
 
-2. Create and activate a virtual environment (recommended):
+2. Install the project with test dependencies:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: .\venv\Scripts\activate
-   ```
-
-3. Install the project with test dependencies:
-   ```bash
-   pip install -e ".[test]"
+   uv sync
    ```
 
 ## Running Tests
@@ -50,13 +44,13 @@ circleci-demo/
 To run the tests locally:
 
 ```bash
-pytest -v
+uv run pytest -v
 ```
 
 To run tests with coverage report:
 
 ```bash
-pytest --cov=src --cov-report=term-missing
+uv run pytest --cov=src --cov-report=term-missing
 ```
 
 ## CircleCI Integration
@@ -83,7 +77,3 @@ This project uses:
 - pytest for testing
 - pytest-cov for coverage reporting
 - setuptools for packaging
-
-## License
-
-MIT
