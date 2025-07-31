@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            uv run pytest --cov=./ --cov-report=xml
+            uv run pytest --cov=./ --cov-report=xml --junitxml=test-results/report.xml
       - store_test_results:
           path: test-results
       - store_artifacts:
